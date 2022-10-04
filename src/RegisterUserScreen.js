@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Avatar, TextInput, Button } from 'react-native-paper';
+import { TextInput, Button, Appbar } from 'react-native-paper';
 import { View, StyleSheet } from 'react-native';
 
 const RegisterUserScreen = ({ navigation }) => {
@@ -9,9 +9,12 @@ const RegisterUserScreen = ({ navigation }) => {
     const [cpf, setCpf] = React.useState('');
 
     return(
-        <View style={{flex: 1}}>
-            <View style={{flex: 1}}>
-            
+        <View style={{ flex: 1 }}>
+            <View style={{ flex: 1 }}>
+                <Appbar.Header style={{backgroundColor: '#0d6efd'}}>
+                    <Appbar.BackAction onPress={() => navigation.navigate('Login')} />
+                    <Appbar.Content title="Contato" style={{alignItems: 'center'}}/>
+                </Appbar.Header>
             </View>
             <TextInput
                 selectionColor='none'
@@ -50,7 +53,7 @@ const RegisterUserScreen = ({ navigation }) => {
                 maxLength={255}
             />
             <Button mode='contained' color='#0d6efd' style={styles.button}>Salvar</Button>
-            <View style={{flex: 1}}>
+            <View style={{ flex: 1 }}>
             
             </View>
         </View>  

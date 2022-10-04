@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Avatar, TextInput, Button } from 'react-native-paper';
+import { Appbar, TextInput, Button } from 'react-native-paper';
 import { View, StyleSheet } from 'react-native';
 
 const AddContactScreen = ({ navigation }) => {
@@ -7,10 +7,13 @@ const AddContactScreen = ({ navigation }) => {
     const [email, setEmail] = React.useState("");
     const [telefone, setTelefone] = React.useState("");
 
-    return(
-        <View style={{flex: 1}}>
-            <View style={{flex: 1}}>
-            
+    return (
+        <View style={{ flex: 1 }}>
+            <View style={{ flex: 1 }}>
+                <Appbar.Header style={{ backgroundColor: '#0d6efd' }}>
+                    <Appbar.BackAction onPress={() => navigation.navigate('ListaContatos')} />
+                    <Appbar.Content title="Contato" style={{ alignItems: 'center' }} />
+                </Appbar.Header>
             </View>
             <TextInput
                 selectionColor='none'
@@ -39,11 +42,11 @@ const AddContactScreen = ({ navigation }) => {
                 textContentType={'telephoneNumber'}
                 maxLength={255}
             />
-            <Button mode='contained' color='#0d6efd' style={styles.button} onPress={() => navigation.navigate('Lista de Contatos')}>Salvar</Button>
-            <View style={{flex: 1}}>
-            
+            <Button mode='contained' color='#0d6efd' style={styles.button} onPress={() => navigation.navigate('ListaContatos')}>Salvar</Button>
+            <View style={{ flex: 1 }}>
+
             </View>
-        </View>  
+        </View>
     );
 };
 

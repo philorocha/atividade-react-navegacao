@@ -7,9 +7,9 @@ const LoginScreen = ({ navigation }) => {
     const [password, setPassword] = React.useState("");
 
     return(
+        
         <View style={{flex: 1}}>
             <View style={{flex: 1}}>
-
             </View>
             <Avatar.Image size={120} source={require('../assets/avatar.png')} style={styles.avatar}/>
             <TextInput
@@ -31,8 +31,8 @@ const LoginScreen = ({ navigation }) => {
                 secureTextEntry={true}
                 maxLength={255}
             />
-            <Button mode='contained' color='#0d6efd' style={styles.button} onPress={() => navigation.navigate('Lista de Contatos')}>Login</Button>
-            <Button mode='contained' color='red' style={styles.button} onPress={() => navigation.navigate('Cadastrar Usuario')}>Cadastre-se</Button>
+            <Button mode='contained' color='#0d6efd' style={styles.button} onPress={() => navigation.navigate('ListaContatos')}>Login</Button>
+            <Button mode='contained' color='#dc3545' style={styles.button} onPress={() => navigation.navigate('CadastrarUsuario')}>Cadastre-se</Button>
             <View style={{flex: 1}}>
 
             </View>
