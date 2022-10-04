@@ -23,20 +23,20 @@ const ContactListScreen = ({ navigation }) => {
 
     const contacts = [
         {
-            name: 'Felipe Vieira da Rocha',
-            phone: '81 99516-8384',
+            name: 'Felipe Vieira',
+            phone: '81 97777-7777',
             avatar: 'https://avatars.githubusercontent.com/u/14117712?v=4',
-            email: 'fvr@discente.ifpe.edu.br'
+            email: 'fvr@google.com'
         },
         {
-            name: 'Denise Evellin dos Anjos',
-            phone: '81 99999-8555',
+            name: 'Denise E.',
+            phone: '81 99999-9999',
             avatar: 'https://instagram.frec6-1.fna.fbcdn.net/v/t51.2885-19/51626615_268582544033566_2555415982461943808_n.jpg?stp=dst-jpg_s150x150&_nc_ht=instagram.frec6-1.fna.fbcdn.net&_nc_cat=110&_nc_ohc=_VyS1QuWVIwAX9TlzbC&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AT8uu6URi8haCF7BDjYj_6_5Y9lkcTkZGHxdVSjyZURljA&oe=63406FEA&_nc_sid=8fd12b',
             email: 'denise@gmail.com'
         },
         {
-            name: 'Paulo César de Andrade',
-            phone: '81 98888-8585',
+            name: 'Paulo C.',
+            phone: '81 98888-8888',
             avatar: 'https://instagram.frec6-1.fna.fbcdn.net/v/t51.2885-19/307931315_629682218770505_6211546110802190639_n.jpg?stp=dst-jpg_s320x320&_nc_ht=instagram.frec6-1.fna.fbcdn.net&_nc_cat=105&_nc_ohc=M28GBQ-wA9oAX8TAGVQ&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AT9iKoOYT_084HM_hYQ0_5aDnnS2RkYgOA4jM3lGX4qcGw&oe=6341203C&_nc_sid=8fd12b',
             email: 'paulo@hotmail.com'
         }

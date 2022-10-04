@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { NavigationContainer, Link } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Appbar, Provider as PaperProvider } from 'react-native-paper';
-import LoginScreen from './src/LoginScreen';
-import ContactListScreen from './src/ContactListScreen';
-import AddContactScreen from './src/AddContactScreen';
-import EditContactScreen from './src/EditContactScreen';
-import RegisterUserScreen from './src/RegisterUserScreen';
+import { Provider as PaperProvider } from 'react-native-paper';
+import LoginScreen from './src/screens/LoginScreen';
+import ContactListScreen from './src/screens/ContactListScreen';
+import AddContactScreen from './src/screens/AddContactScreen';
+import EditContactScreen from './src/screens/EditContactScreen';
+import RegisterUserScreen from './src/screens/RegisterUserScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,9 +18,6 @@ export default function App() {
           <Stack.Screen 
             name='Login'
             component={LoginScreen}
-            options={{
-              headerTitle: '',
-            }}
            />
           <Stack.Screen
             name='NovoContato'

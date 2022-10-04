@@ -11,7 +11,7 @@ const LoginScreen = ({ navigation }) => {
         <View style={{flex: 1}}>
             <View style={{flex: 1}}>
             </View>
-            <Avatar.Image size={120} source={require('../assets/avatar.png')} style={styles.avatar}/>
+            <Avatar.Image size={120} source={require('../../assets/avatar.png')} style={styles.avatar}/>
             <TextInput
                 selectionColor='none'
                 style={styles.input}
