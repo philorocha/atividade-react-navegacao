@@ -1,12 +1,26 @@
 import * as React from 'react';
 import { TextInput, Button, Appbar } from 'react-native-paper';
 import { View, StyleSheet } from 'react-native';
+import axios from 'axios';
+
+
+const deleteUser = async (id, { navigation }) => {
+    const result = await axios.delete(`http://professornilson.com/testeservico/clientes/${id}`)
+        .then((response) => {
+            console.log(response.data);
+            navigation.navigate('ListaContatos');
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+}
 
 const EditContactScreen = ({ route, navigation }) => {
-    const {name, phone, email} = route.params;
-    const [userName, setUserName] = React.useState(name);
+    const {id, nome, cpf, email, telefone} = route.params;
+    const [userName, setUserName] = React.useState(nome);
     const [userEmail, setUserEmail] = React.useState(email);
-    const [userPhone, setUserPhone] = React.useState(phone);
+    const [userPhone, setUserPhone] = React.useState(telefone);
+    const [userCpf, setCpf] = React.useState(cpf);
 
     return(
         <View style={{ flex: 1 }}>
@@ -44,7 +58,7 @@ const EditContactScreen = ({ route, navigation }) => {
                 maxLength={255}
             />
             <Button mode='contained' color='#0d6efd' style={styles.button}>Alterar</Button>
-            <Button mode='contained' color='#dc3545' style={styles.button}>Excluir</Button>
+            <Button mode='contained' color='#dc3545' style={styles.button} onPress={() => deleteUser(id, { navigation })}>Excluir</Button>
             <View style={{ flex: 1 }}>
             
             </View>
