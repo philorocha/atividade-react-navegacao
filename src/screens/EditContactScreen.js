@@ -2,25 +2,39 @@ import * as React from 'react';
 import { TextInput, Button, Appbar } from 'react-native-paper';
 import { View, StyleSheet } from 'react-native';
 import axios from 'axios';
+import { useState, useEffect } from 'react';
 
 
-const deleteUser = async (id, { navigation }) => {
+const deleteUser = async (id, { navigation, route }) => {
     const result = await axios.delete(`http://professornilson.com/testeservico/clientes/${id}`)
         .then((response) => {
-            console.log(response.data);
-            navigation.navigate('ListaContatos');
+            navigation.goBack();
         })
         .catch((err) => {
             console.log(err);
         });
 }
 
+const updateUser = async (id, nome, email, telefone, { navigation, route }) => {
+    const result = await axios.put(`http://professornilson.com/testeservico/clientes/${id}`, {
+        nome: nome,
+        email: email,
+        telefone: telefone
+    })
+    .then((response) => {
+        console.log(response);
+    })
+    .catch((error) => {
+        console.log(error);
+    })
+}
+
 const EditContactScreen = ({ route, navigation }) => {
     const {id, nome, cpf, email, telefone} = route.params;
-    const [userName, setUserName] = React.useState(nome);
-    const [userEmail, setUserEmail] = React.useState(email);
-    const [userPhone, setUserPhone] = React.useState(telefone);
-    const [userCpf, setCpf] = React.useState(cpf);
+    const [userName, setUserName] = useState(nome);
+    const [userEmail, setUserEmail] = useState(email);
+    const [userPhone, setUserPhone] = useState(telefone);
+    const [userCpf, setCpf] = useState(cpf);
 
     return(
         <View style={{ flex: 1 }}>
@@ -57,7 +71,9 @@ const EditContactScreen = ({ route, navigation }) => {
                 textContentType={'telephoneNumber'}
                 maxLength={255}
             />
-            <Button mode='contained' color='#0d6efd' style={styles.button}>Alterar</Button>
+            <Button mode='contained' color='#0d6efd' style={styles.button} onPress={() => {
+                updateUser(id, userName, userEmail, userPhone, { navigation, route });
+            }}>Alterar</Button>
             <Button mode='contained' color='#dc3545' style={styles.button} onPress={() => deleteUser(id, { navigation })}>Excluir</Button>
             <View style={{ flex: 1 }}>
             

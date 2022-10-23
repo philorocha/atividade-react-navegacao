@@ -1,6 +1,22 @@
 import * as React from 'react';
 import { Appbar, TextInput, Button } from 'react-native-paper';
 import { View, StyleSheet } from 'react-native';
+import axios from 'axios';
+
+const addUser = async (nome, email, telefone, { navigation }) => {
+    const result = axios.post('http://professornilson.com/testeservico/clientes', {
+        nome: nome,
+        email: email,
+        telefone: telefone
+    })
+    .then((response) => {
+        console.log(response);
+        navigation.goBack();
+    })
+    .catch((error) => {
+        console.log(error);
+    })
+}
 
 const AddContactScreen = ({ navigation }) => {
     const [nome, setNome] = React.useState("");
@@ -17,6 +33,7 @@ const AddContactScreen = ({ navigation }) => {
             </View>
             <TextInput
                 selectionColor='none'
+                activeOutlineColor='none'
                 style={styles.input}
                 mode='outlined'
                 label={'Nome'}
@@ -26,6 +43,7 @@ const AddContactScreen = ({ navigation }) => {
             />
             <TextInput
                 style={styles.input}
+                activeOutlineColor='none'
                 mode='outlined'
                 label={'E-mail'}
                 value={email}
@@ -35,6 +53,7 @@ const AddContactScreen = ({ navigation }) => {
             />
             <TextInput
                 style={styles.input}
+                activeOutlineColor='none'
                 mode='outlined'
                 label={'Telefone'}
                 value={telefone}
@@ -42,7 +61,9 @@ const AddContactScreen = ({ navigation }) => {
                 textContentType={'telephoneNumber'}
                 maxLength={255}
             />
-            <Button mode='contained' color='#0d6efd' style={styles.button} onPress={() => navigation.navigate('ListaContatos')}>Salvar</Button>
+            <Button mode='contained' color='#0d6efd' style={styles.button} onPress={
+                () => addUser(nome, email, telefone, { navigation })
+            }>Salvar</Button>
             <View style={{ flex: 1 }}>
 
             </View>

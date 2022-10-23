@@ -1,23 +1,33 @@
 import * as React from 'react';
 import { Avatar, List, Divider, Appbar } from 'react-native-paper';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 import { useState, useEffect } from 'react';
+import { useIsFocused } from '@react-navigation/native';
 import axios from 'axios';
 
-const ContactListScreen = ({ navigation }) => {
+const ContactListScreen = ({ navigation, route }) => {
     const [users, setUsers] = useState([]);
+    const isFocused = useIsFocused();
+    console.log(isFocused);
 
     useEffect(() => {
         async function getusers() {
             const result = await axios.get('http://professornilson.com/testeservico/clientes')
-            .then((data) => {
-                setUsers(data.data);
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+                .then((data) => {
+                    setUsers(data.data);
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
         }
-        getusers();
+        if (isFocused) {
+            getusers();
+            //console.log('entrei aqui pra ver', users);
+        } else {
+            console.log('entrei aqui pra apagar', users);
+            //console.log(users);
+            setUsers([]);
+        }
     }, []);
 
     const Contact = (props) => {
@@ -27,8 +37,8 @@ const ContactListScreen = ({ navigation }) => {
                     <List.Item
                         title={props.nome}
                         description={props.telefone}
-                        left={() => <Avatar.Image size={90} source={require('../../assets/avatar.png') } />}
-                        onPress={() => navigation.navigate('EditarContato', { 
+                        left={() => <Avatar.Image size={90} source={require('../../assets/avatar.png')} />}
+                        onPress={() => navigation.navigate('EditarContato', {
                             id: props.id,
                             nome: props.nome,
                             cpf: props.cpf,
@@ -46,16 +56,20 @@ const ContactListScreen = ({ navigation }) => {
     return (
         <View>
             <View>
-                <Appbar.Header style={{backgroundColor: '#0d6efd'}}>
-                    <Appbar.Content title="Lista de contatos" style={{alignItems: 'center'}}/>
+                <Appbar.Header style={{ backgroundColor: '#0d6efd' }}>
+                    <Appbar.Content title="Lista de contatos" style={{ alignItems: 'center' }} />
                     <Appbar.Action icon={'plus'} onPress={() => navigation.navigate('NovoContato')} />
                 </Appbar.Header>
             </View>
-            {
-                users.map((contact, i) => (
-                    <Contact nome={contact.nome} telefone={contact.telefone} avatar={'../../assets/avatar.png'} email={contact.email} key={i} id={contact.id}/>
-                ))
-            }
+            <SafeAreaView>
+                <ScrollView contentContainerStyle={styles.contentContainer}>
+                    {
+                        users.map((contact, i) => (
+                            <Contact nome={contact.nome} telefone={contact.telefone} avatar={'../../assets/avatar.png'} email={contact.email} key={i} id={contact.id} />
+                        ))
+                    }
+                </ScrollView>
+            </SafeAreaView>
         </View>
     );
 };
@@ -75,6 +89,9 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         marginLeft: 4,
         marginRight: 4
+    },
+    contentContainer: {
+        paddingVertical: 50
     }
 });
 
