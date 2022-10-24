@@ -20,14 +20,7 @@ const ContactListScreen = ({ navigation, route }) => {
                     console.log(err)
                 })
         }
-        if (isFocused) {
-            getusers();
-            //console.log('entrei aqui pra ver', users);
-        } else {
-            console.log('entrei aqui pra apagar', users);
-            //console.log(users);
-            setUsers([]);
-        }
+        getusers();
     }, []);
 
     const Contact = (props) => {
