@@ -2,13 +2,13 @@ import * as React from 'react';
 import { Avatar, List, Divider, Appbar } from 'react-native-paper';
 import { View, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 import { useState, useEffect } from 'react';
-import { useIsFocused } from '@react-navigation/native';
 import axios from 'axios';
+import { useIsFocused } from "@react-navigation/native";
 
-const ContactListScreen = ({ navigation, route }) => {
+
+function ContactListScreen ({ navigation, route }) {
     const [users, setUsers] = useState([]);
     const isFocused = useIsFocused();
-    console.log(isFocused);
 
     useEffect(() => {
         async function getusers() {
@@ -21,7 +21,7 @@ const ContactListScreen = ({ navigation, route }) => {
                 })
         }
         getusers();
-    }, []);
+    }, [isFocused]);
 
     const Contact = (props) => {
         return (

@@ -3,6 +3,8 @@ import { TextInput, Button, Appbar } from 'react-native-paper';
 import { View, StyleSheet } from 'react-native';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import FlashMessage from "react-native-flash-message";
+import { showMessage, hideMessage } from "react-native-flash-message";
 
 
 const deleteUser = async (id, { navigation, route }) => {
@@ -22,7 +24,10 @@ const updateUser = async (id, nome, email, telefone, { navigation, route }) => {
         telefone: telefone
     })
     .then((response) => {
-        console.log(response);
+        showMessage({
+            message: "Registro alterado com sucesso",
+            type: "success",
+        });
     })
     .catch((error) => {
         console.log(error);
@@ -38,6 +43,7 @@ const EditContactScreen = ({ route, navigation }) => {
 
     return(
         <View style={{ flex: 1 }}>
+            <FlashMessage position="top" />
             <View style={{ flex: 1 }}>
                 <Appbar.Header style={{ backgroundColor: '#0d6efd' }}>
                     <Appbar.BackAction onPress={() => navigation.navigate('ListaContatos')} />
