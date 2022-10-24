@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { TextInput, Button, Appbar } from 'react-native-paper';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import FlashMessage from "react-native-flash-message";
 import { showMessage, hideMessage } from "react-native-flash-message";
+import Dialog from "react-native-dialog";
 
 
 const deleteUser = async (id, { navigation, route }) => {
@@ -23,31 +24,47 @@ const updateUser = async (id, nome, email, telefone, { navigation, route }) => {
         email: email,
         telefone: telefone
     })
-    .then((response) => {
-        showMessage({
-            message: "Registro alterado com sucesso",
-            type: "success",
-        });
-    })
-    .catch((error) => {
-        console.log(error);
-    })
+        .then((response) => {
+            showMessage({
+                message: "Registro alterado com sucesso",
+                type: "success",
+            });
+        })
+        .catch((error) => {
+            console.log(error);
+        })
 }
 
+/*const Teste = () => {
+    const [dialogVisibility, setDialogVisibility] = useState(false);
+    return (
+        <View>
+            <Dialog.Container visible={true}>
+                <Dialog.Title>Exclusão de usuário</Dialog.Title>
+                <Dialog.Description>
+                    Deseja realmente excluir o usuário?
+                </Dialog.Description>
+                <Dialog.Button label="cancelar" />
+                <Dialog.Button label="Excluir" />
+            </Dialog.Container>
+        </View>
+    )
+}*/
+
 const EditContactScreen = ({ route, navigation }) => {
-    const {id, nome, cpf, email, telefone} = route.params;
+    const { id, nome, cpf, email, telefone } = route.params;
     const [userName, setUserName] = useState(nome);
     const [userEmail, setUserEmail] = useState(email);
     const [userPhone, setUserPhone] = useState(telefone);
     const [userCpf, setCpf] = useState(cpf);
 
-    return(
+    return (
         <View style={{ flex: 1 }}>
             <FlashMessage position="top" />
             <View style={{ flex: 1 }}>
                 <Appbar.Header style={{ backgroundColor: '#0d6efd' }}>
                     <Appbar.BackAction onPress={() => navigation.navigate('ListaContatos')} />
-                    <Appbar.Content title="Contato" style={{ alignItems: 'center' }}/>
+                    <Appbar.Content title="Contato" style={{ alignItems: 'center' }} />
                 </Appbar.Header>
             </View>
             <TextInput
@@ -82,9 +99,9 @@ const EditContactScreen = ({ route, navigation }) => {
             }}>Alterar</Button>
             <Button mode='contained' color='#dc3545' style={styles.button} onPress={() => deleteUser(id, { navigation })}>Excluir</Button>
             <View style={{ flex: 1 }}>
-            
+                
             </View>
-        </View>  
+        </View>
     );
 };
 
