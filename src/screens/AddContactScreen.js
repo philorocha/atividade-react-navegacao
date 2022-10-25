@@ -10,7 +10,6 @@ const addUser = async (nome, email, telefone, { navigation }) => {
         telefone: telefone
     })
     .then((response) => {
-        console.log(response);
         navigation.goBack();
     })
     .catch((error) => {

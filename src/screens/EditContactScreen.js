@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { TextInput, Button, Appbar } from 'react-native-paper';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import FlashMessage from "react-native-flash-message";
@@ -35,28 +35,13 @@ const updateUser = async (id, nome, email, telefone, { navigation, route }) => {
         })
 }
 
-/*const Teste = () => {
-    const [dialogVisibility, setDialogVisibility] = useState(false);
-    return (
-        <View>
-            <Dialog.Container visible={true}>
-                <Dialog.Title>Exclusão de usuário</Dialog.Title>
-                <Dialog.Description>
-                    Deseja realmente excluir o usuário?
-                </Dialog.Description>
-                <Dialog.Button label="cancelar" />
-                <Dialog.Button label="Excluir" />
-            </Dialog.Container>
-        </View>
-    )
-}*/
-
 const EditContactScreen = ({ route, navigation }) => {
     const { id, nome, cpf, email, telefone } = route.params;
     const [userName, setUserName] = useState(nome);
     const [userEmail, setUserEmail] = useState(email);
     const [userPhone, setUserPhone] = useState(telefone);
     const [userCpf, setCpf] = useState(cpf);
+    const [dialogVisibility, setDialogVisibility] = useState(false);
 
     return (
         <View style={{ flex: 1 }}>
@@ -97,9 +82,18 @@ const EditContactScreen = ({ route, navigation }) => {
             <Button mode='contained' color='#0d6efd' style={styles.button} onPress={() => {
                 updateUser(id, userName, userEmail, userPhone, { navigation, route });
             }}>Alterar</Button>
-            <Button mode='contained' color='#dc3545' style={styles.button} onPress={() => deleteUser(id, { navigation })}>Excluir</Button>
+            <Button mode='contained' color='#dc3545' style={styles.button} onPress={() => setDialogVisibility(true)}>Excluir</Button>
             <View style={{ flex: 1 }}>
-                
+                <View>
+                    <Dialog.Container visible={dialogVisibility}>
+                        <Dialog.Title style={{ textAlign: 'center' }}>Exclusão de usuário</Dialog.Title>
+                        <Dialog.Description>
+                            Deseja realmente excluir o usuário?
+                        </Dialog.Description>
+                        <Dialog.Button label="cancelar" onPress={() => setDialogVisibility(false)} />
+                        <Dialog.Button label="Excluir" onPress={() => deleteUser(id, { navigation })} />
+                    </Dialog.Container>
+                </View>
             </View>
         </View>
     );
