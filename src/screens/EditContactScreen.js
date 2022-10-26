@@ -2,9 +2,9 @@ import * as React from 'react';
 import { TextInput, Button, Appbar } from 'react-native-paper';
 import { View, StyleSheet } from 'react-native';
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import FlashMessage from "react-native-flash-message";
-import { showMessage, hideMessage } from "react-native-flash-message";
+import { showMessage, Message } from "react-native-flash-message";
 import Dialog from "react-native-dialog";
 
 

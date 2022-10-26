@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { Avatar, TextInput, Button } from 'react-native-paper';
 import { View, StyleSheet } from 'react-native';
+import { signInWithEmailAndPassword } from "firebase/auth";
+import auth from '../config/firebase';
+import FlashMessage from "react-native-flash-message";
+import { showMessage, hideMessage } from "react-native-flash-message";
 
 const LoginScreen = ({ navigation }) => {
     const [login, setLogin] = React.useState("");
@@ -9,6 +13,7 @@ const LoginScreen = ({ navigation }) => {
     return(
         
         <View style={{flex: 1}}>
+            <FlashMessage position="bottom" />
             <View style={{flex: 1}}>
             </View>
             <Avatar.Image size={120} source={require('../../assets/avatar.png')} style={styles.avatar}/>
@@ -31,7 +36,19 @@ const LoginScreen = ({ navigation }) => {
                 secureTextEntry={true}
                 maxLength={255}
             />
-            <Button mode='contained' color='#0d6efd' style={styles.button} onPress={() => navigation.navigate('ListaContatos')}>Login</Button>
+            <Button mode='contained' color='#0d6efd' style={styles.button} onPress={() => {
+                signInWithEmailAndPassword(auth, login, password)
+                    .then((userCredential) => {
+                        navigation.navigate('ListaContatos')
+                    })
+                    .catch((error) => {
+                        showMessage({
+                            //message: `${error.code}: ${error.message}`,
+                            message: 'E-mail ou senha incorretos',
+                            type: 'danger',
+                        });
+                    })
+            }}>Login</Button>
             <Button mode='contained' color='#dc3545' style={styles.button} onPress={() => navigation.navigate('CadastrarUsuario')}>Cadastre-se</Button>
             <View style={{flex: 1}}>
 

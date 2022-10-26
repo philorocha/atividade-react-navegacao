@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { TextInput, Button, Appbar } from 'react-native-paper';
 import { View, StyleSheet } from 'react-native';
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import auth from '../config/firebase';
 
 const RegisterUserScreen = ({ navigation }) => {
     const [nome, setNome] = React.useState('');
@@ -52,7 +54,15 @@ const RegisterUserScreen = ({ navigation }) => {
                 secureTextEntry={true}
                 maxLength={255}
             />
-            <Button mode='contained' color='#0d6efd' style={styles.button}>Salvar</Button>
+            <Button mode='contained' color='#0d6efd' style={styles.button} onPress={() => {
+                createUserWithEmailAndPassword(auth, email, password)
+                    .then((userCredential) => {
+                        console.log('tudo certo');
+                    })
+                    .catch((error) => {
+                        console.error(error.code, error.message);
+                    })
+            }}>Salvar</Button>
             <View style={{ flex: 1 }}>
             
             </View>
