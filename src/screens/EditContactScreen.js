@@ -3,8 +3,7 @@ import { TextInput, Button, Appbar } from 'react-native-paper';
 import { View, StyleSheet } from 'react-native';
 import axios from 'axios';
 import { useState } from 'react';
-import FlashMessage from "react-native-flash-message";
-import { showMessage, Message } from "react-native-flash-message";
+import { showMessage } from "react-native-flash-message";
 import Dialog from "react-native-dialog";
 
 
@@ -45,7 +44,6 @@ const EditContactScreen = ({ route, navigation }) => {
 
     return (
         <View style={{ flex: 1 }}>
-            <FlashMessage position="top" />
             <View style={{ flex: 1 }}>
                 <Appbar.Header style={{ backgroundColor: '#0d6efd' }}>
                     <Appbar.BackAction onPress={() => navigation.navigate('ListaContatos')} />

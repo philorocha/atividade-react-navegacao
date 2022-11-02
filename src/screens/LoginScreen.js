@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Avatar, TextInput, Button } from 'react-native-paper';
+import { Avatar, TextInput, Button, AnimatedFAB } from 'react-native-paper';
 import { View, StyleSheet } from 'react-native';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import auth from '../config/firebase';
@@ -10,13 +10,13 @@ const LoginScreen = ({ navigation }) => {
     const [login, setLogin] = React.useState("");
     const [password, setPassword] = React.useState("");
 
-    return(
-        
-        <View style={{flex: 1}}>
-            <FlashMessage position="bottom" />
-            <View style={{flex: 1}}>
+    return (
+
+        <View style={{ flex: 1 }}>
+            <View style={{ flex: 1 }}>
+
             </View>
-            <Avatar.Image size={120} source={require('../../assets/avatar.png')} style={styles.avatar}/>
+            <Avatar.Image size={120} source={require('../../assets/avatar.png')} style={styles.avatar} />
             <TextInput
                 selectionColor='none'
                 style={styles.input}
@@ -39,21 +39,23 @@ const LoginScreen = ({ navigation }) => {
             <Button mode='contained' color='#0d6efd' style={styles.button} onPress={() => {
                 signInWithEmailAndPassword(auth, login, password)
                     .then((userCredential) => {
-                        navigation.navigate('ListaContatos')
+                        console.log(userCredential);
+                        navigation.navigate('ListaContatos');
+                        setLogin('');
+                        setPassword('');
                     })
                     .catch((error) => {
                         showMessage({
-                            //message: `${error.code}: ${error.message}`,
                             message: 'E-mail ou senha incorretos',
                             type: 'danger',
                         });
                     })
             }}>Login</Button>
             <Button mode='contained' color='#dc3545' style={styles.button} onPress={() => navigation.navigate('CadastrarUsuario')}>Cadastre-se</Button>
-            <View style={{flex: 1}}>
-
+            <View style={{ flex: 1 }}>
+                
             </View>
-        </View>  
+        </View>
     );
 };
 

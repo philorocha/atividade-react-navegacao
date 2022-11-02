@@ -1,12 +1,14 @@
 import * as React from 'react';
-import { Avatar, List, Divider, Appbar } from 'react-native-paper';
+import { Avatar, List, Divider, Appbar, FAB } from 'react-native-paper';
 import { View, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useIsFocused } from "@react-navigation/native";
+import auth from '../config/firebase';
+import { getAuth, signOut } from 'firebase/auth';
 
 
-function ContactListScreen ({ navigation, route }) {
+function ContactListScreen({ navigation, route }) {
     const [users, setUsers] = useState([]);
     const isFocused = useIsFocused();
 
@@ -47,11 +49,19 @@ function ContactListScreen ({ navigation, route }) {
     }
 
     return (
-        <View>
+        <View style={{ flex: 1 }}>
             <View>
                 <Appbar.Header style={{ backgroundColor: '#0d6efd' }}>
                     <Appbar.Content title="Lista de contatos" style={{ alignItems: 'center' }} />
-                    <Appbar.Action icon={'plus'} onPress={() => navigation.navigate('NovoContato')} />
+                    <Appbar.Action icon={'logout'} onPress={() => {
+                        signOut(auth)
+                        .then(() => {
+                            navigation.navigate('Login');
+                        })
+                        .catch((error) => {
+                            console.log(error.message);
+                        })
+                    }} />
                 </Appbar.Header>
             </View>
             <SafeAreaView>
@@ -62,7 +72,13 @@ function ContactListScreen ({ navigation, route }) {
                         ))
                     }
                 </ScrollView>
+
             </SafeAreaView>
+            <FAB
+                icon={'plus'}
+                style={styles.fab}
+                onPress={() => navigation.navigate('NovoContato')}
+            />
         </View>
     );
 };
@@ -85,6 +101,13 @@ const styles = StyleSheet.create({
     },
     contentContainer: {
         paddingVertical: 50
+    },
+    fab: {
+        margin: 16,
+        right: 0,
+        bottom: 0,
+        position: 'absolute',
+        backgroundColor: '#0d6efd'
     }
 });
 

@@ -7,6 +7,7 @@ import ContactListScreen from './src/screens/ContactListScreen';
 import AddContactScreen from './src/screens/AddContactScreen';
 import EditContactScreen from './src/screens/EditContactScreen';
 import RegisterUserScreen from './src/screens/RegisterUserScreen';
+import FlashMessage from "react-native-flash-message";
 
 const Stack = createNativeStackNavigator();
 
@@ -36,6 +37,7 @@ export default function App() {
             component={RegisterUserScreen}
           />
         </Stack.Navigator>
+        <FlashMessage position="top" />
       </NavigationContainer>
     </PaperProvider>
   );
