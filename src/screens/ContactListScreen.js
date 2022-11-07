@@ -55,25 +55,22 @@ function ContactListScreen({ navigation, route }) {
                     <Appbar.Content title="Lista de contatos" style={{ alignItems: 'center' }} />
                     <Appbar.Action icon={'logout'} onPress={() => {
                         signOut(auth)
-                        .then(() => {
-                            navigation.navigate('Login');
-                        })
-                        .catch((error) => {
-                            console.log(error.message);
-                        })
+                            .then(() => {
+                                navigation.navigate('Login');
+                            })
+                            .catch((error) => {
+                                console.log(error.message);
+                            })
                     }} />
                 </Appbar.Header>
             </View>
-            <SafeAreaView>
-                <ScrollView contentContainerStyle={styles.contentContainer}>
-                    {
-                        users.map((contact, i) => (
-                            <Contact nome={contact.nome} telefone={contact.telefone} avatar={'../../assets/avatar.png'} email={contact.email} key={i} id={contact.id} />
-                        ))
-                    }
-                </ScrollView>
-
-            </SafeAreaView>
+            <ScrollView>
+                {
+                    users.map((contact, i) => (
+                        <Contact nome={contact.nome} telefone={contact.telefone} avatar={'../../assets/avatar.png'} email={contact.email} key={i} id={contact.id} />
+                    ))
+                }
+            </ScrollView>
             <FAB
                 icon={'plus'}
                 style={styles.fab}
@@ -98,9 +95,6 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         marginLeft: 4,
         marginRight: 4
-    },
-    contentContainer: {
-        paddingVertical: 50
     },
     fab: {
         margin: 16,

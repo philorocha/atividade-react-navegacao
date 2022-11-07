@@ -19,6 +19,7 @@ const LoginScreen = ({ navigation }) => {
             <Avatar.Image size={120} source={require('../../assets/avatar.png')} style={styles.avatar} />
             <TextInput
                 selectionColor='none'
+                activeOutlineColor='none'
                 style={styles.input}
                 mode='outlined'
                 label={'Login'}
@@ -29,6 +30,7 @@ const LoginScreen = ({ navigation }) => {
             />
             <TextInput
                 style={styles.input}
+                activeOutlineColor='none'
                 mode='outlined'
                 label={'Senha'}
                 value={password}
@@ -39,7 +41,6 @@ const LoginScreen = ({ navigation }) => {
             <Button mode='contained' color='#0d6efd' style={styles.button} onPress={() => {
                 signInWithEmailAndPassword(auth, login, password)
                     .then((userCredential) => {
-                        console.log(userCredential);
                         navigation.navigate('ListaContatos');
                         setLogin('');
                         setPassword('');

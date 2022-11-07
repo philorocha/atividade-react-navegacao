@@ -4,7 +4,7 @@ import { View, StyleSheet } from 'react-native';
 import axios from 'axios';
 
 const addUser = async (nome, email, telefone, { navigation }) => {
-    const result = axios.post('http://professornilson.com/testeservico/clientes', {
+    const result = await axios.post('http://professornilson.com/testeservico/clientes', {
         nome: nome,
         email: email,
         telefone: telefone

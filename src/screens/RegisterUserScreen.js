@@ -20,6 +20,7 @@ const RegisterUserScreen = ({ navigation }) => {
             </View>
             <TextInput
                 selectionColor='none'
+                activeOutlineColor='none'
                 style={styles.input}
                 mode='outlined'
                 label={'Nome'}
@@ -29,6 +30,7 @@ const RegisterUserScreen = ({ navigation }) => {
             />
             <TextInput
                 selectionColor='none'
+                activeOutlineColor='none'
                 style={styles.input}
                 mode='outlined'
                 label={'CPF'}
@@ -38,6 +40,7 @@ const RegisterUserScreen = ({ navigation }) => {
             />
             <TextInput
                 style={styles.input}
+                activeOutlineColor='none'
                 mode='outlined'
                 label={'E-mail'}
                 value={email}
@@ -47,6 +50,7 @@ const RegisterUserScreen = ({ navigation }) => {
             />
             <TextInput
                 style={styles.input}
+                activeOutlineColor='none'
                 mode='outlined'
                 label={'Senha'}
                 value={password}
@@ -57,7 +61,7 @@ const RegisterUserScreen = ({ navigation }) => {
             <Button mode='contained' color='#0d6efd' style={styles.button} onPress={() => {
                 createUserWithEmailAndPassword(auth, email, password)
                     .then((userCredential) => {
-                        console.log('tudo certo');
+                        console.log('ok');
                     })
                     .catch((error) => {
                         console.error(error.code, error.message);

@@ -52,6 +52,7 @@ const EditContactScreen = ({ route, navigation }) => {
             </View>
             <TextInput
                 selectionColor='none'
+                activeOutlineColor='none'
                 style={styles.input}
                 mode='outlined'
                 label={'Nome'}
@@ -61,6 +62,7 @@ const EditContactScreen = ({ route, navigation }) => {
             />
             <TextInput
                 style={styles.input}
+                activeOutlineColor='none'
                 mode='outlined'
                 label={'E-mail'}
                 value={userEmail}
@@ -70,6 +72,7 @@ const EditContactScreen = ({ route, navigation }) => {
             />
             <TextInput
                 style={styles.input}
+                activeOutlineColor='none'
                 mode='outlined'
                 label={'Telefone'}
                 value={userPhone}
