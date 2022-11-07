@@ -3,7 +3,6 @@ import { Avatar, TextInput, Button, AnimatedFAB } from 'react-native-paper';
 import { View, StyleSheet } from 'react-native';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import auth from '../config/firebase';
-import FlashMessage from "react-native-flash-message";
 import { showMessage, hideMessage } from "react-native-flash-message";
 
 const LoginScreen = ({ navigation }) => {
